@@ -1,0 +1,19 @@
+
+%% For equation bounding boxes with colours (default is black)
+% Copied from https://ctan.asis.ai/obsolete/info/math/voss/mathmode/Mathmode.pdf
+\makeatletter
+\def\myMathBox{\@ifnextchar[{\my@MBoxi}{\my@MBoxi[black]}}
+\def\my@MBoxi[#1]{\@ifnextchar[{\my@MBoxii[#1]}{\my@MBoxii[#1][white]}}
+\def\my@MBoxii[#1][#2]#3#4{%
+  \par\noindent%
+  \fcolorbox{#1}{#2}{%
+    \parbox{\linewidth-\labelwidth-2\fboxrule-2\fboxsep}{#3}%
+  }%
+  \parbox{\labelwidth}{%
+    \begin{eqnarray}\label{#4}\end{eqnarray}%
+  }%
+  \par%
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO not working -> \myMathBox[red][black]{\[P(X_A \cap X_{B}) = P(X_A) * P(X_{B})\]}

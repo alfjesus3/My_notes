@@ -1,0 +1,7 @@
+# For Vscode generated files - Ignores everything which is not these files
+
+!.gitignore
+!/**/*.tex
+!/**/*.bib
+!/**/*.sty
+

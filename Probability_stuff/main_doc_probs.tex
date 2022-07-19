@@ -1,0 +1,144 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+
+% Using my styles file
+\usepackage{my_macro}
+
+
+\title{Notes on Probabilities and its Applications to Machine Learning}
+
+\author{André Fialho Jesus}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Index}
+\begin{itemize}
+    \item Basic Concepts \#1 - Section \ref{basic_prob_sec1}
+    \item Basic Concepts \#2 - Section \ref{basic_prob_sec2}
+    \item Other chapter (Section ...)
+\end{itemize}
+
+\section{Notation}
+The following symbols are used in this document:
+\begin{itemize}
+    \item A and B can be random variables
+    \item $A, B$ is the same as $A \cap B$ 
+\end{itemize}
+
+
+\section{Basic Concepts \#1}\label{basic_prob_sec1}
+
+
+\subection{Useful terminology}
+The prior belief is the belief (in probability) before seeing the data.
+
+The posterior belief is the updated belief after seeing the data.
+
+The standard deviation, $\sigma$, measures the variabilty on the data with respect to the mean, $\mu$.
+The variance, $\sigma^2$ (or $s^2$, $Var(X)$), is the square of the standard deviation.
+TODO - define covariance  
+
+The joint probability distribution $P(X_1, X_2, ..., X_n)$ describes the probability of all events combinations.
+If we have $N$ variables and $K$ values per variable then we require $K^N-1$ combinations to define it.
+
+
+
+
+\subsection{Assuming random var. independence}
+Given a set of random variables $X_1, X_2, ....$ if they are indepedent we have $X_1 \perp X_2 \perp ... X_n$.
+
+We have that
+\begin{itemize}
+    \item $P(X_A \cap X_{B}) = P(X_A) * P(X_{B})$ since the two events are disjoint (visible with Venn Diagram illustration).
+\end{itemize}
+
+Proof that $$P(X_1, X_2, ..., X_n | \theta) = P(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta)$$
+Starting from the left-hand side:
+\begin{align*}
+    P(X_1, X_2, ..., X_n | \theta) = \\
+    \frac{P((X_1, X_2, ..., X_n) , \theta)}{P(\theta)}  =  \quad \text{(def. conditional prob.)}  \\
+    \frac{P(X_1)}{P(\theta)} * \frac{P(X_2)}{P(\theta)} * ... \frac{P(X_n)}{P(\theta)} * \frac{P(\theta)}{P(\theta)} = \quad \text{(since $P(X_i \cap X_{i+1}) = P(X_i) * P(X_{i+1})$)} \\
+    P(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta) * 1 = lllP(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta)
+\end{align*}
+
+\subsection{Summary}
+TODO ...
+
+\section{Basic Concepts \#2}\label{basic_prob_sec2}
+
+\subsection{(Log)likelihood}
+The likelihood represents how well a model $\theta$ fits the dataset D.
+It is characterized by the following formula $l(\theta; x) = log(p(x|\theta))$ (WHY ? provide a proof).
+
+Assumptions: (1) the data point events are indepedent i.e. $x_1 \perp x_2 \perp ... x_n$ 
+
+The log of the probability $p(x | \theta)$ is useful due to the two properties: $\prod$ becomes $\sum$ and exponents $log(a^b)$ become products $b * log(a)$.
+
+\subsubsection{Maximum loglikelihood}
+TODO
+
+
+\subsection{Statistic}
+Firstly, a statistic is a function of the random variable $X$ (input in D = (X, Y)).
+
+\subsubsection{Sufficient statistic}
+A sufficient statistic has the goal of capturing the properties of the whole dataset, D = (X, Y), in a subset.
+In a more rigorous definition, a statistic $t = t(X)$ is sufficient, given the parameters $\theta$, if the $\theta$ does not influence the conditional probability with respect to the data - $I(\theta, X) = I(\theta, T(X))$.
+Or alternatively, we can say that $P(X|T(X), Y) = P(X|T(X))$.
+
+\paragraph{Why?}
+In the case of big datasets it enables to identify the redundant data while fitting the model, $\theta$, to the dataset, D.
+Additionally, it facilitates computing the MLE of the model.
+
+\paragraph{How?}
+In order to identify a sufficient statistic we can use the Neyman Factorization theory \textbf{(TODO define and explain with proof derivations)}.
+
+
+\paragraph{Paper \#1}
+In the Cvitkovic et. al. \cite{} they propose a new "minimal sufficient statistic" for M.L. tasks.
+Since the minimal assumption is too strong for the setting of a particular machine learning task (where only particular set of functions is useful), they consider "minimal \textbf{achievable} sufficient statistic".
+They introduce a new information-theoretic quantity (in opposition to using mutual information).
+Their framework enabled a new training objective for ML based on the proposed information theoretic measurement.
+
+TODO add reference - "Minimal Achievable Sufficent Statistic Learning"
+TODO read and define "representation learning from Deep learning book (2016)"
+
+\subsection{Summary}
+TODO ...
+
+\section{Gaussian processes regression}
+
+% From youtube material 
+The GPr is like a probabilities distribution over functions (source "Coding gaussian process regressors FROM SCRATCH in python").
+It contains two important constituints - the probability distribution over functions\footnote{This is correct but it helps conveying the main point.} and the mechanism to update our functions given new input data points ($p(f|y_i) = p(f, y_i) / p(y_i)$).
+The best guess for the function that captures the data is the mean of the infinitely many functions and their corresponding covariance.
+TODO formalize - There is a sort of gaussian distribution $(mu, sigma^2)$ per dataset point (X,Y) where (X can potential be a vector and Y too)
+
+
+\subsection{Summary}
+TODO ...
+
+\section{CMA-ES}
+
+\subsection{How?}
+Q: Does this method keep a measurement of the uncertainty (variance of distribution)?
+
+
+\subsection{Summary}
+TODO ...
+
+\section{Unorganized list of questions}
+\begin{enumerate}
+    \item (From Yasser) Why all the machine learning methods assume that the distribution is Gaussian? 
+\end{enumerate}
+
+
+\end{document}

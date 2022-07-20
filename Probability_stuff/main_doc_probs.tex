@@ -37,7 +37,7 @@ The following symbols are used in this document:
 \section{Basic Concepts \#1}\label{basic_prob_sec1}
 
 
-\subection{Useful terminology}
+\subsection{Useful terminology}
 The prior belief is the belief (in probability) before seeing the data.
 
 The posterior belief is the updated belief after seeing the data.
@@ -66,7 +66,7 @@ Starting from the left-hand side:
     P(X_1, X_2, ..., X_n | \theta) = \\
     \frac{P((X_1, X_2, ..., X_n) , \theta)}{P(\theta)}  =  \quad \text{(def. conditional prob.)}  \\
     \frac{P(X_1)}{P(\theta)} * \frac{P(X_2)}{P(\theta)} * ... \frac{P(X_n)}{P(\theta)} * \frac{P(\theta)}{P(\theta)} = \quad \text{(since $P(X_i \cap X_{i+1}) = P(X_i) * P(X_{i+1})$)} \\
-    P(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta) * 1 = lllP(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta)
+    P(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta) * 1 = P(X_1 | \theta) * P(X_2 | \theta) * ... * P(X_n | \theta)
 \end{align*}
 
 \subsection{Summary}
